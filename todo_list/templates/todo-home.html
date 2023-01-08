@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mycss %}
+  <style>
+  body{
+    background-color: #FAFAFA;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 80px;
+  }
+
+  a {
+    font-size: 20px;
+    text-decoration: none;
+    color: whitesmoke;
+  }
+
+  i{
+    cursor: pointer;
+  }
+
+  h2{
+    font-size: 35px;
+  }
+
+  h3{
+    font-size: 25px;
+  }
+
+  .btn {
+    border: 1px solid #757575;
+    background-color: #FFF;
+    color: black;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  #allTaskDiv{
+    padding: 15px;
+  }
+
+  #headingDiv{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    padding: 25px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+  }
+
+  #todoTaskDiv{
+    display: block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-top: 1px solid #dfe4ea;
+    overflow: hidden;
+    padding-bottom: 30px;
+  }
+
+  #formDiv{
+    align-items: center;
+    padding: 20px;
+  }
+
+  .container{
+    padding: 0px;
+    max-width: 550px;
+    margin: auto;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+  }
+
+  .task-wrapper{
+    padding: 10px;
+    border-top: 1px solid #dfe4ea;
+  }
+
+
+  .headings-class{
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .task-title{
+    padding: 0px;
+    font-family: 'Times New Roman', Times, serif;
+  } 
+
+  .checkbox-container {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+
+  .task-title a {
+    float: right;
+    text-decoration: none;
+    color: #384444;
+    margin-left: 15px;
+    font-size: 22px;
+  }
+
+  input[type=text] {
+    width: 75%;
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  input[type=text]:focus {
+    outline-width: 0;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 9px;
+    width: 75%;
+  }
+
+
+  .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    border-radius: 15px;
+    margin-top: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 23px;
+    background-color: #eee;
+  }
+  
+  .checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    background: rgb(13, 172, 13);
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .btn:hover{
+    background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%) !important;
+  }
+
+  </style>
+{% endblock mycss %}
+
+{% block script %}
+    <script>
+      const tdObj = {};
+        tdObj.vars = {
+        tokenVal: "{{ csrf_token }}",
+        titleErr: "Please add a task!",
+        addUpdateURL: "{% url 'add_update_task' %}",
+        logoutURL: "{% url 'logout' %}",
+        loginURL: "{% url 'login' %}",
+        loggedinUser: "{{ user.username }}"
+      };
+      window.onload = function() {
+        tdObj.toDos.initializeModule();
+      };
+    </script>
+  <script src="{% static 'js/jquery-3.6.1.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/jquery.haml-1.3.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/todo-home.js' %}" type="text/javascript"></script>
+{% endblock %}

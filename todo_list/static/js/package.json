@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "eslint-plugin-jsx-a11y": "^6.6.1"
+  }
+}

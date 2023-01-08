@@ -1,0 +1,56 @@
+
+    {% extends 'base.html' %}
+
+    {% block title %} Registration {% endblock %}
+
+    {% block mycss %} 
+
+    {% endblock %}
+
+    {% block content %}
+
+
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-8 col-lg-4">
+                    <div class="card bg-white">
+                        <div class="card-body">
+                            <form method="post" action="{% url 'register' %}" class="mb-3 mt-md-4">
+                                {% csrf_token %}
+                                <h2 class="fw-bold mb-5 text-uppercase text-center ">Registration</h2>
+                                {% for field in form %}
+                                <div class="mb-3">
+                                    <label for="{{ field.auto_id }}" class="form-label ">{{ field.label }}</label>
+                                    <sup><i class="fa fa-asterisk" style="font-size:10px;color:red"></i></sup>
+                                    {{field}}
+                                </div>
+
+                                <!-- <div class="d-flex flex-row align-items-center mb-4">
+                                    <i class="fas fa-{{ field.field.icon }} fa-lg me-3 fa-fw"></i>
+                                    <div class="form-outline flex-fill mb-0">
+                                      {{field}}
+                                    </div>
+                                </div> -->
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger my-3 p-1" role="alert">
+                                        {{ error|striptags }}
+                                    </div>
+                                {% endfor %}
+                                {% endfor %}
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-dark" type="submit">Register</button>
+                                </div>
+                                <br>
+                                <div>
+                                    <p class="mb-0  text-center">Already have an account? <a href="{% url 'login' %}" class="text-primary fw-bold">Sign In</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
