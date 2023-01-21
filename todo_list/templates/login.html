@@ -2,14 +2,28 @@
 
     {% block title %} Login {% endblock %}
 
-    {% block mycss %}
-    <style>
-        
-    </style>
-
-    {% endblock %}
-
     {% block content %}
+    <!-- <fieldset>
+        <legend><h2>Login</h2></legend>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+        {% for message in messages %}
+        
+        <div id="err-msg" style="color: red;">
+               {{ message }}
+        </div>
+    {% endfor %}
+    <br>
+            <input type="submit" value="Login">
+        </form>
+            <p>OR</p>
+            <div>
+                <a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa-solid fa-user">Login with Google</i></a></button>
+            </div>
+            <br>
+            <a href="{% url 'register' %}">Not yet registered?</a>
+    </fieldset> -->
 
 <div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="container">
@@ -24,11 +38,12 @@
                                 {% for message in messages %} 
                                     {% if "register" in message.tags %}
                                         <div class="alert alert-success">
-                                            <strong>{{ message }}</strong>
+                                                <strong>{{ message }}</strong>
                                         </div>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
+
                             {% for field in form %}
                             <div class="mb-3">
                                 <label for="{{ field.auto_id }}" class="form-label ">{{ field.label }}</label>
@@ -37,11 +52,13 @@
                             {% endfor %}
 
                             {% for message in messages %}
-                                {% if "login" in message.tags %}
+
+                                {% if "login" in message.tags %}   
                                     <div class="alert alert-danger">
                                         <strong>{{ message }}</strong>
                                     </div>
                                 {% endif %}
+                                
                             {% endfor %}
                             <div class="d-grid">
                                 <button class="btn btn-outline-dark" type="submit">Login</button>
@@ -71,10 +88,10 @@
 
     {% block script %}
 
-    <script>
-        setTimeout(function(){
-            $(".alert").fadeOut();
-        }, 3000)
-    </script>
+        <script>
+            setTimeout(function(){
+                $('.alert').fadeOut();
+            }, 3000)
+        </script>
 
     {% endblock %}

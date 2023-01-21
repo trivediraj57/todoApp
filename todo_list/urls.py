@@ -9,5 +9,6 @@ urlpatterns = [
     path("logout/", views.LogoutForm.as_view(), name="logout"),
     path("", views.todo_home, name="todo-home"),
     path("add-update-task/", views.add_update_task, name="add_update_task"),
+    path("delete-task", views.delete_task, name='delete_task'),
     path("", include("social_django.urls", namespace="social")),
 ]

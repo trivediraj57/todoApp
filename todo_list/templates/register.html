@@ -9,6 +9,17 @@
 
     {% block content %}
 
+    <!-- <fieldset>
+        <legend><h2>Registration</h2></legend>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register">
+            <br><br>
+            <a href="{% url 'login' %}">Already have an account?</a>
+        </form>
+    </fieldset> -->
+
 
     <div class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container">
